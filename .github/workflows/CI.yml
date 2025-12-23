@@ -21,7 +21,7 @@ jobs:
       count: ${{ steps.set-build-counter.outputs.count }}
     steps:
       - uses: actions/checkout@v3
-      - uses: mshafer1/gh-actions/build-counter@v0
+      - uses: mshafer1/gh-actions/set-build-counter@main
         id: set-build-counter
         with:
           seed: '${{ env.repo_major_minor }}'
