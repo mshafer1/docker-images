@@ -11,7 +11,7 @@ on:
       - '!docs'
   workflow_dispatch:
 
-environment:
+env:
   repo_major_minor: '0.1'  # manually update for major.minor changes
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }} # default GITHUB_TOKEN has no permission to set repo variables, must be a PAT that has variable write
   build_and_push:
     runs-on: ubuntu-latest
-    depends-on: set_build_counter
+    needs: set_build_counter
     strategy:
       matrix:
         app:
