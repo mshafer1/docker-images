@@ -59,8 +59,10 @@ jobs:
             type=sha
             type=semver,pattern=build-{{ env.repo_major_minor }}.{{ needs.set_build_counter.outputs.count }}
             type=semver,pattern=build-{{ env.repo_major_minor }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Build Docker image
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        uses: docker/build-push-action@v6
         with:
           context: ./${{ matrix.app }}
           cache-from: type=gha
