@@ -69,7 +69,7 @@ jobs:
         run: |
           app_version_command="$(cat ./${{ matrix.app }}/_get_version.sh)"
           echo Running version command: $app_version_command
-          app_version=$(docker run --rm dev/${{ matrix.app }} /bin/sh -c "${app_version_command}")
+          app_version=$(docker run --rm dev/${{ matrix.app }} "${app_version_command}")
           major_app_version=`echo ${app_version} | cut -d'.' -f1`
 
           decider_version="build-${{ env.repo_major_minor }}_${{ matrix.app }}-${app_version}"

@@ -4,5 +4,6 @@ RUN apk update && \
     apk add --no-cache gettext && \
     rm -rf /var/cache/apk/*
 
-CMD [ "/bin/sh", "-c" ]
-ENTRYPOINT ["envsubst"]
+ENTRYPOINT [ "/bin/sh", "-c" ]
+
+CMD ["envsubst"]

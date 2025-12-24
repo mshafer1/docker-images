@@ -5,5 +5,7 @@ RUN apk update && \
     rm -rf /var/cache/apk/*
 
 EXPOSE 53/udp
-CMD [ "/bin/sh", "-c" ]
-ENTRYPOINT ["dnsmasq", "-k"]
+
+ENTRYPOINT [ "/bin/sh", "-c" ]
+
+CMD ["dnsmasq", "-k"]
