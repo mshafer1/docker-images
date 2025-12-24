@@ -52,7 +52,7 @@ jobs:
             ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}
           flavor: |
             latest=true
-          lables: |
+          labels: |
             org.opencontainers.image.description="Docker image for ${{ matrix.app }}"
           tags: |
             type=ref,event=branch
