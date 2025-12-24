@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  repo_major_minor: '0.1'  # manually update for major.minor changes
+  repo_major_minor: '1.0'  # manually update for major.minor changes
 
 jobs:
   set_build_counter:
