@@ -74,12 +74,15 @@ jobs:
 
           decider_version="build-${{ env.repo_major_minor }}_${{ matrix.app }}-${app_version}"
 
-          if ! docker pull ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:${decider_version}; then
+          if ! docker manifest inspect ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:${decider_version} > /dev/null; then
             echo "Tagging with version ${app_version} and pushing"
 
             for v in ${{ matrix.app }}_${app_version} ${{ matrix.app }}_${major_app_version} ${decider_version}; do
-              docker tag dev/${{ matrix.app }}:latest ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:$v
+              docker tag ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:dev ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:$v
             done
+
+            # now remove the dev tag so we don't push it
+            docker rmi ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:dev
 
             docker image push --all-tags ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}
           else
