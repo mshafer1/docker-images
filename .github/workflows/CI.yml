@@ -68,12 +68,12 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max # mode=max exports all layers for maximum caching
           push: false
-          tags: dev/${{ matrix.app }}:latest , ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
       - name: Tag with app version and conditionally push
         run: |
           app_version_command="$(cat ./${{ matrix.app }}/_get_version.sh)"
           echo Running version command: $app_version_command
-          app_version=$(docker run --rm dev/${{ matrix.app }} "${app_version_command}")
+          app_version=$(docker run --rm ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:latest "${app_version_command}")
           major_app_version=`echo ${app_version} | cut -d'.' -f1`
 
           decider_version="build-${{ env.repo_major_minor }}_${{ matrix.app }}-${app_version}"
