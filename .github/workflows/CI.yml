@@ -52,6 +52,8 @@ jobs:
             ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}
           flavor: |
             latest=true
+          lables: |
+            org.opencontainers.image.description="Docker image for ${{ matrix.app }}"
           tags: |
             type=ref,event=branch
             type=sha
@@ -65,7 +67,9 @@ jobs:
           tags: dev/${{ matrix.app }}:latest , ${{ steps.meta.outputs.tags }}
       - name: Tag with app version and conditionally push
         run: |
-          app_version=$(docker run --rm dev/${{ matrix.app }} /bin/sh -c "$(cat ./${{ matrix.app }}/_get_version.sh)")
+          app_version_command="$(cat ./${{ matrix.app }}/_get_version.sh)"
+          echo Running version command: $app_version_command
+          app_version=$(docker run --rm dev/${{ matrix.app }} /bin/sh -c "${app_version_command}")
           major_app_version=`echo ${app_version} | cut -d'.' -f1`
 
           decider_version="build-${{ env.repo_major_minor }}_${{ matrix.app }}-${app_version}"
