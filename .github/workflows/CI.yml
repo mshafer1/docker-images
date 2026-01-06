@@ -20,7 +20,7 @@ jobs:
     outputs:
       count: ${{ steps.set-build-counter.outputs.count }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - uses: mshafer1/gh-actions/set-build-counter@main
         id: set-build-counter
         with:
@@ -37,7 +37,7 @@ jobs:
           - envsubst
     environment: Release
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
