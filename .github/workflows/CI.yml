@@ -20,7 +20,7 @@ jobs:
     outputs:
       count: ${{ steps.set-build-counter.outputs.count }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
       - uses: mshafer1/gh-actions/set-build-counter@main
         id: set-build-counter
         with:
@@ -37,16 +37,16 @@ jobs:
           - envsubst
     environment: Release
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
       - name: Log in to Docker Hub
-        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        uses: docker/login-action@6862ffc5ab2cdb4405cf318a62a6f4c066e2298b
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        uses: docker/metadata-action@f0a4bc3c2d4c68c4ddaeaca7ba2497760fe0ead4
         with:
           images: |
             ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}
@@ -60,7 +60,7 @@ jobs:
             type=semver,pattern=build-{{ env.repo_major_minor }}.{{ needs.set_build_counter.outputs.count }}
             type=semver,pattern=build-{{ env.repo_major_minor }}
       - name: Build Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
         with:
           context: ./${{ matrix.app }}
           push: false
