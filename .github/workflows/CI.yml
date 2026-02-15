@@ -35,7 +35,7 @@ jobs:
         app:
           - dnsmasq
           - envsubst
-          - ffmpeg_compile_tools
+          # - ffmpeg_compile_tools # - disabled for now. I don't need a 30 minute build every time something changes.
     environment: Release
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
