@@ -68,7 +68,7 @@ jobs:
           tags: ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:dev, ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:latest, ${{ steps.meta.outputs.tags }}
       - name: Tag with app version and conditionally push
         run: |
-          app_version_command="$(cat ./${{ matrix.app }}/_get_version.sh)"
+          app_version_command="$(cat ./${{ matrix.app }}/_get_version.sh | grep -e '^#' -v)"
           echo Running version command: $app_version_command
           app_version=$(docker run --rm ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:dev "${app_version_command}")
           major_app_version=`echo ${app_version} | cut -d'.' -f1`
