@@ -20,7 +20,7 @@ jobs:
     outputs:
       count: ${{ steps.set-build-counter.outputs.count }}
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: mshafer1/gh-actions/set-build-counter@53b85ede2023c2cb93f8911f007d80c64095444d # v1.0.0
         id: set-build-counter
         with:
@@ -38,7 +38,7 @@ jobs:
           # - ffmpeg_compile_tools # - disabled for now. I don't need a 30 minute build every time something changes.
     environment: Release
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Log in to Docker Hub
         uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
         with:
@@ -47,7 +47,7 @@ jobs:
       
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@f0a4bc3c2d4c68c4ddaeaca7ba2497760fe0ead4 # v0
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
         with:
           images: |
             ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}
