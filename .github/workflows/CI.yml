@@ -72,7 +72,7 @@ jobs:
         run: |
           app_version_command="$(cat ./${{ matrix.app }}/_get_version.sh | grep -e '^#' -v)"
           echo Running version command: $app_version_command
-          app_version=$(docker run --entrypoint sh --rm ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:dev -c "${app_version_command}")
+          app_version=$(docker run --entrypoint sh --rm ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:dev -c "${app_version_command}") || app_version=$(docker run --rm ${{ vars.DOCKER_USERNAME }}/${{ matrix.app }}:dev $app_version_command)
           if [ -z "${app_version}" ]; then
             echo "Error, failed to get version from ${{ matrix.app}}"
             exit 1
