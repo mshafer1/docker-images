@@ -1,0 +1,1 @@
+FROM klutchell/dnscrypt-proxy:v2.1.16@sha256:3af5afe391745293c1f1069a641d2df9617c8b17a2baa8d7b4a34c323453374b
