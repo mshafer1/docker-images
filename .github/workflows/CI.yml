@@ -21,7 +21,7 @@ jobs:
       count: ${{ steps.set-build-counter.outputs.count }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: mshafer1/gh-actions/set-build-counter@53b85ede2023c2cb93f8911f007d80c64095444d # v1.0.0
+      - uses: mshafer1/gh-actions/set-build-counter@169772a4a0c48a596aa5e1c79896c1ac1794bef4 # v1.1.0
         id: set-build-counter
         with:
           seed: '${{ env.repo_major_minor }}'
@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Log in to Docker Hub
-        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4.5.1
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
